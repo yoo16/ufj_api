@@ -1,6 +1,8 @@
 <?php
 require_once 'libs/UFJRequest.php';
 
+if (!$argv[1]) exit('Not found account_id');
+//argv[1] is UFJ account id. *sample data
 //UFJ sample account id
 // 001001110001
 // 002001110002
@@ -23,10 +25,10 @@ require_once 'libs/UFJRequest.php';
 // 002383330014
 // 002283330016
 
-if (!$argv[1]) exit('Not found account_id');
-
 $ufj_request = new UFJRequest();
-$ufj_request->loadClientSecret('client_secret');
+//set client secret file path in loadClientSecret()
+//client secret is issued by UFJ API sites.
+$ufj_request->loadClientSecret('settings/client_secret.yoo');
 $ufj_request->setAccountId($argv[1]);
 $account = $ufj_request->getAccount();
 
